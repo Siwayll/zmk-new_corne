@@ -31,6 +31,8 @@
             display-name = "Shift/Caps Lock Tap Dance";
             #binding-cells = <0>;
             bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
+
+            label = "Shift";
         };
     };
 
@@ -48,16 +50,25 @@
         tap-ms = <30>;
     };
 
+    combos {
+        compatible = "zmk,combos";
+
+        printScreen {
+            bindings = <&kp PRINTSCREEN>;
+            key-positions = <4 5>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
-            display-name = "QWERTY";
+            display-name = "ergol";
             bindings = <
-&kp TAB    &kp Q  &kp C  &kp O      &kp P  &kp W                                &kp UP                &kp J        &kp M  &kp D     &kp O      &kp Y  &kp BSPC
-&td0       &kp A  &kp S  &kp E      &kp N  &kp F                      &kp LEFT  &kp ENTER  &kp RIGHT  &kp L        &kp R  &kp T     &kp I      &kp U  &kp SQT
-&kp LCTRL  &kp Z  &kp X  &kp MINUS  &kp V  &kp B        &kp K_MUTE              &kp DOWN              &kp PERIOD   &kp H  &kp G     &kp COMMA  &kp K  &kp ESC
-                         &kp LGUI   &mo 1  &lt 3 SPACE                                                &lt 3 ENTER  &mo 2  &kp RALT
+&kp TAB        &kp Q  &kp C  &kp O      &kp P  &kp W                                &kp UP                &kp J        &kp M  &kp D     &kp C_AC_SEARCH  &kp Y  &kp BSPC
+&td0           &kp A  &kp S  &kp E      &kp N  &kp F                      &kp LEFT  &kp ENTER  &kp RIGHT  &kp L        &kp R  &kp T     &kp I            &kp U  &lt 5 SINGLE_QUOTE
+&mt LCTRL ESC  &kp Z  &kp X  &kp MINUS  &kp V  &kp B        &kp K_MUTE              &kp DOWN              &kp PERIOD   &kp H  &kp G     &kp COMMA        &kp K  &kp ESC
+                             &kp LGUI   &mo 1  &lt 3 SPACE                                                &lt 3 ENTER  &mo 2  &kp RALT
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -87,13 +98,13 @@
             sensor-bindings = <&scroll_encoder>;
         };
 
-        layer_3 {
+        configuration {
             display-name = "Fn";
             bindings = <
-&studio_unlock  &kp F1      &kp F2     &kp F3       &kp F4     &kp F5                                  &mmv MOVE_UP                     &kp F6       &kp F7     &kp F8       &kp F9      &kp F10          &kp F11
-&trans          &trans      &mkp LCLK  &mkp MCLK    &mkp RCLK  &mkp MB4                &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &bootloader  &mkp LCLK  &mkp MCLK    &mkp RCLK   &kp PRINTSCREEN  &kp F12
-&trans          &sys_reset  &trans     &bootloader  &trans     &mkp MB5  &kp C_MUTE                    &mmv MOVE_DOWN                   &trans       &trans     &bootloader  &sys_reset  &kp SCROLLLOCK   &kp PAUSE_BREAK
-                                       &trans       &trans     &trans                                                                   &trans       &trans     &trans
+&none  &none         &none         &none         &none         &none                            &none         &none           &none  &none  &none  &none  &none
+&none  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4              &none  &none  &none  &none           &none  &none  &none  &none  &none
+&none  &none         &none         &none         &none         &rgb_ug RGB_OFF  &none           &none         &rgb_ug RGB_ON  &none  &none  &none  &none  &none
+                                   &none         &none         &none                                          &none           &none  &none
             >;
 
             sensor-bindings = <&scroll_encoder>;
@@ -105,6 +116,15 @@
 &trans  &trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans            &trans          &trans  &trans  &trans  &trans  &trans  &trans
                         &trans  &trans  &trans                                    &trans  &trans  &trans
+            >;
+        };
+
+        navigation {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans                    &trans          &trans    &trans        &trans          &trans           &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &kp LEFT  &kp UP_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans            &trans          &trans    &trans        &trans          &trans           &trans  &trans
+                        &trans  &trans  &trans                                    &trans    &trans        &trans
             >;
         };
     };
